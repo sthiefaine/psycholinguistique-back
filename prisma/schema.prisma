@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // PostgreSQL pour la production
+  url      = env("DATABASE_URL")
+}
+
+model Participant {
+  id           String    @id @default(uuid())
+  participantId String   // ID du participant (ex: P001)
+  germanLevel  String?  // Niveau en allemand d'après le test: "A1", "A2", "B1", "B2", "C1", "C2"
+  nativeLanguage String? // Langue maternelle: "french" ou "portuguese"
+  ipAddress    String?  // Adresse IP de l'utilisateur
+  startTime    DateTime
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  experiments  Experiment[]
+}
+
+model Experiment {
+  id            String    @id @default(uuid())
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  
+  // Configuration de l'expérience
+  practiceTrials    Int
+  totalTrials       Int
+  pauseAfterTrials  Int
+  sentenceDisplayTime Int
+  feedbackTime      Int
+  
+  startTime     DateTime
+  endTime       DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  trials        Trial[]
+}
+
+model Trial {
+  id            String    @id @default(uuid())
+  experimentId  String
+  experiment    Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  
+  trialNumber   Int       // Numéro de l'essai (1, 2, 3, ...)
+  sentence      String
+  condition     String    // simple_non_ambiguous, complex_non_ambiguous, etc.
+  expected      String    // grammatical ou ungrammatical
+  response      String    // grammatical ou ungrammatical
+  responseTime  Int       // Temps de réponse en millisecondes
+  correct       Boolean
+  timestamp     DateTime
+  
+  createdAt     DateTime  @default(now())
+}
+

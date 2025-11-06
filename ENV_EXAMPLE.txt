@@ -1,0 +1,15 @@
+# Copiez ce contenu dans un fichier .env à la racine du dossier backend-example
+
+# URL de la base de données
+# Pour SQLite (développement):
+DATABASE_URL="file:./dev.db"
+
+# Pour PostgreSQL (production):
+# DATABASE_URL="postgresql://user:password@localhost:5432/psycholinguistique?schema=public"
+
+# Pour MySQL:
+# DATABASE_URL="mysql://user:password@localhost:3306/psycholinguistique"
+
+# Port du serveur
+PORT=3000
+
