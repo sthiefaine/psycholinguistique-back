@@ -4,6 +4,7 @@ export interface ParticipantData {
   id: string;
   germanLevel?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | string | null; // Niveau en allemand d'après le test
   nativeLanguage?: 'french' | 'portuguese' | null; // Langue maternelle
+  notBilingual?: boolean | null; // true = n'est pas bilingue, false = est bilingue ou n'a pas répondu
   startTime: string;
 }
 

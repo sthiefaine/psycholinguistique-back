@@ -15,6 +15,7 @@ model Participant {
   participantId String   // ID du participant (ex: P001)
   germanLevel  String?  // Niveau en allemand d'après le test: "A1", "A2", "B1", "B2", "C1", "C2"
   nativeLanguage String? // Langue maternelle: "french" ou "portuguese"
+  notBilingual Boolean? // true = n'est pas bilingue, false = est bilingue ou n'a pas répondu
   ipAddress    String?  // Adresse IP de l'utilisateur
   startTime    DateTime
   createdAt    DateTime  @default(now())

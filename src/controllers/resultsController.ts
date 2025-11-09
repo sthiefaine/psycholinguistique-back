@@ -39,30 +39,31 @@ export class ResultsController {
             participantId: data.participant.id,
             germanLevel: data.participant.germanLevel || null,
             nativeLanguage: data.participant.nativeLanguage || null,
+            notBilingual: data.participant.notBilingual !== undefined ? data.participant.notBilingual : null,
             ipAddress: clientIp,
             startTime: new Date(data.participant.startTime)
-          }
+          } as any
         });
       } else {
-        // Mettre à jour l'IP, le niveau d'allemand et la langue maternelle si nécessaire
-        const updateData: { 
-          ipAddress?: string; 
-          germanLevel?: string | null;
-          nativeLanguage?: string | null;
-        } = {};
+        // Mettre à jour l'IP, le niveau d'allemand, la langue maternelle et notBilingual si nécessaire
+        const updateData: Record<string, unknown> = {};
         if (!participant.ipAddress) {
           updateData.ipAddress = clientIp;
         }
-        if (!participant.germanLevel && data.participant.germanLevel) {
+        const participantAny = participant as any;
+        if (!participantAny.germanLevel && data.participant.germanLevel) {
           updateData.germanLevel = data.participant.germanLevel;
         }
-        if (!participant.nativeLanguage && data.participant.nativeLanguage) {
+        if (!participantAny.nativeLanguage && data.participant.nativeLanguage) {
           updateData.nativeLanguage = data.participant.nativeLanguage;
+        }
+        if (data.participant.notBilingual !== undefined && participantAny.notBilingual === null) {
+          updateData.notBilingual = data.participant.notBilingual;
         }
         if (Object.keys(updateData).length > 0) {
           participant = await prisma.participant.update({
             where: { id: participant.id },
-            data: updateData
+            data: updateData as any
           });
         }
       }

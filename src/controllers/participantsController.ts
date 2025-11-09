@@ -60,6 +60,7 @@ export class ParticipantsController {
         participantId: participant.participantId,
         nativeLanguage: participant.nativeLanguage || null,
         germanLevel: participant.germanLevel || null,
+        notBilingual: participant.notBilingual !== undefined ? participant.notBilingual : null,
         startTime: participant.startTime.toISOString(),
         ipAddress: participant.ipAddress || null,
         experiments: [] // Vide ici, on récupère les détails après
@@ -112,6 +113,7 @@ export class ParticipantsController {
         participantId: participant.participantId,
         nativeLanguage: (participant as any).nativeLanguage || null,
         germanLevel: (participant as any).germanLevel || null,
+        notBilingual: (participant as any).notBilingual !== undefined ? (participant as any).notBilingual : null,
         startTime: participant.startTime.toISOString(),
         ipAddress: participant.ipAddress || null,
         experiments: participant.experiments.map((exp: any) => ({
@@ -201,6 +203,7 @@ export class ParticipantsController {
           participantId: participant.participantId,
           nativeLanguage: participant.nativeLanguage || null,
           germanLevel: participant.germanLevel || null,
+          notBilingual: participant.notBilingual !== undefined ? participant.notBilingual : null,
           startTime: participant.startTime.toISOString(),
           ipAddress: participant.ipAddress || null,
           experiments: experiments

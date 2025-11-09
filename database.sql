@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS "Participant" (
     "participantId" VARCHAR(255) NOT NULL,
     "germanLevel" VARCHAR(10), -- Niveau en allemand: "A1", "A2", "B1", "B2", "C1", "C2"
     "nativeLanguage" VARCHAR(20), -- "french" ou "portuguese"
+    "notBilingual" BOOLEAN, -- true = n'est pas bilingue, false = est bilingue ou n'a pas répondu
     "ipAddress" VARCHAR(45),
     "startTime" TIMESTAMP NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
