@@ -63,6 +63,14 @@ export class ParticipantsController {
         notBilingual: participant.notBilingual !== undefined ? participant.notBilingual : null,
         startTime: participant.startTime.toISOString(),
         ipAddress: participant.ipAddress || null,
+        // Données du questionnaire optionnel
+        age: participant.age || null,
+        gender: participant.gender || null,
+        learningDuration: participant.learningDuration || null,
+        feeling: participant.feeling || null,
+        educationLevel: participant.educationLevel || null,
+        germanUsageFrequency: participant.germanUsageFrequency || null,
+        questionnaireSubmittedAt: participant.questionnaireSubmittedAt ? participant.questionnaireSubmittedAt.toISOString() : null,
         experiments: [] // Vide ici, on récupère les détails après
       }));
 
@@ -116,6 +124,14 @@ export class ParticipantsController {
         notBilingual: (participant as any).notBilingual !== undefined ? (participant as any).notBilingual : null,
         startTime: participant.startTime.toISOString(),
         ipAddress: participant.ipAddress || null,
+        // Données du questionnaire optionnel
+        age: (participant as any).age || null,
+        gender: (participant as any).gender || null,
+        learningDuration: (participant as any).learningDuration || null,
+        feeling: (participant as any).feeling || null,
+        educationLevel: (participant as any).educationLevel || null,
+        germanUsageFrequency: (participant as any).germanUsageFrequency || null,
+        questionnaireSubmittedAt: (participant as any).questionnaireSubmittedAt ? (participant as any).questionnaireSubmittedAt.toISOString() : null,
         experiments: participant.experiments.map((exp: any) => ({
           id: exp.id,
           config: {}, // Configuration vide comme attendu par le frontend
@@ -206,6 +222,14 @@ export class ParticipantsController {
           notBilingual: participant.notBilingual !== undefined ? participant.notBilingual : null,
           startTime: participant.startTime.toISOString(),
           ipAddress: participant.ipAddress || null,
+          // Données du questionnaire optionnel
+          age: participant.age || null,
+          gender: participant.gender || null,
+          learningDuration: participant.learningDuration || null,
+          feeling: participant.feeling || null,
+          educationLevel: participant.educationLevel || null,
+          germanUsageFrequency: participant.germanUsageFrequency || null,
+          questionnaireSubmittedAt: participant.questionnaireSubmittedAt ? participant.questionnaireSubmittedAt.toISOString() : null,
           experiments: experiments
         };
       });

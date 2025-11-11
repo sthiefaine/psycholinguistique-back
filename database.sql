@@ -14,7 +14,15 @@ CREATE TABLE IF NOT EXISTS "Participant" (
     "ipAddress" VARCHAR(45),
     "startTime" TIMESTAMP NOT NULL,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    -- Données du questionnaire optionnel
+    "age" INTEGER, -- Âge (optionnel)
+    "gender" VARCHAR(20), -- "male", "female", "other", "prefer_not_to_say" (optionnel)
+    "learningDuration" VARCHAR(30), -- "less_than_1_year", "1_to_2_years", "2_to_5_years", "5_to_10_years", "more_than_10_years" (optionnel)
+    "feeling" VARCHAR(20), -- "like", "fear", "dislike", "indifferent" (optionnel)
+    "educationLevel" VARCHAR(20), -- "lycee", "bac", "bac_plus_2", "licence", "master", "doctorat" (optionnel)
+    "germanUsageFrequency" VARCHAR(30), -- "everyday", "several_times_week", "rarely" (optionnel)
+    "questionnaireSubmittedAt" TIMESTAMP -- Date de soumission du questionnaire
 );
 
 -- Table: Experiment
